@@ -28,12 +28,12 @@ export function ProviderLayout({ children }: ProviderLayoutProps) {
 
   const navItems = [
     { href: "/provider/dashboard", label: "Dashboard", icon: LayoutDashboard },
-    // { href: "/provider/patients", label: "Patients", icon: Users },
-    // { href: "/provider/vaccinations", label: "Vaccinations", icon: Syringe },
-    // { href: "/provider/submissions", label: "Submissions", icon: ClipboardCheck },
-    // { href: "/provider/schedule", label: "Schedule", icon: Calendar },
-    // { href: "/provider/reports", label: "Reports", icon: FileText },
-    // { href: "/provider/settings", label: "Settings", icon: Settings },
+    { href: "/provider/patients", label: "Patients", icon: Users },
+    { href: "/provider/vaccinations", label: "Vaccinations", icon: Syringe },
+    { href: "/provider/submissions", label: "Submissions", icon: ClipboardCheck },
+    { href: "/provider/schedule", label: "Schedule", icon: Calendar },
+    { href: "/provider/reports", label: "Reports", icon: FileText },
+    { href: "/provider/settings", label: "Settings", icon: Settings },
   ]
 
   return (
@@ -104,7 +104,7 @@ export function ProviderLayout({ children }: ProviderLayoutProps) {
               )
             })}
             <div className="flex-1" />
-            <Link href="/logout" className="flex items-center gap-2 text-sm font-medium text-destructive">
+            <Link href="/" className="flex items-center gap-2 text-sm font-medium text-destructive">
               <LogOut className="h-5 w-5" aria-hidden="true" />
               Logout
             </Link>

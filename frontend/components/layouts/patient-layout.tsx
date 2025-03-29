@@ -92,7 +92,7 @@ export function PatientLayout({ children }: PatientLayoutProps) {
               )
             })}
             <div className="flex-1" />
-            <Link href="/logout" className="flex items-center gap-2 text-sm font-medium text-destructive">
+            <Link href="/" className="flex items-center gap-2 text-sm font-medium text-destructive">
               <LogOut className="h-5 w-5" aria-hidden="true" />
               Logout
             </Link>

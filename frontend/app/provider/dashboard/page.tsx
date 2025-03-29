@@ -116,7 +116,7 @@ export default function ProviderDashboard() {
             </CardContent>
           </Card>
 
-          <Card>
+          {/* <Card>
             <CardHeader className="pb-2">
               <CardTitle className="text-2xl">3</CardTitle>
               <CardDescription>Low Inventory Alerts</CardDescription>
@@ -127,7 +127,7 @@ export default function ProviderDashboard() {
                 <span className="text-sm text-muted-foreground">Vaccines that need reordering</span>
               </div>
             </CardContent>
-          </Card>
+          </Card> */}
         </div>
 
         <div className="mt-6">
