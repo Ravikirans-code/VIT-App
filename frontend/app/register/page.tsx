@@ -10,7 +10,6 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { register } from "@/lib/auth"
 
 export default function RegisterPage() {
   const router = useRouter()
@@ -36,20 +35,35 @@ export default function RegisterPage() {
     }
 
     try {
-      await register(name, email, password, userType)
+      const response = await fetch("http://localhost:4300/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, password, userType }),
+      })
 
+      if (!response.ok) {
+        const data = await response.json()
+        setError(data.message || "Registration failed. Please try again.")
+        return
+      }
+
+      const data = await response.json()
+      const userDetails = { name: data.name, email: data.email, userType: data.userType };
       if (userType === "patient") {
-        router.push("/patient/dashboard")
+
+        router.push("/login")
       } else {
-        router.push("/provider/dashboard")
+// to be fixed Later
+        router.push("/login?type=provider")
       }
     } catch (err) {
-      setError("Registration failed. Please try again.")
+      setError("An error occurred. Please try again.")
     } finally {
       setIsLoading(false)
     }
   }
-
   return (
     <div className="container flex items-center justify-center min-h-screen py-12">
       <Card className="w-full max-w-md">
@@ -134,5 +148,7 @@ export default function RegisterPage() {
       </Card>
     </div>
   )
+
+
 }
 

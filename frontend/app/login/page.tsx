@@ -34,8 +34,7 @@ export default function LoginPage() {
 
     try {
 
-      if (type === "provider") {
-        const response = await fetch("http://localhost:3009/api/auth/login", {
+        const response = await fetch("http://localhost:4300/api/auth/login", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -49,6 +48,9 @@ export default function LoginPage() {
 
         const data = await response.json();
         console.log(data)
+        localStorage.setItem("userDetails", JSON.stringify(data));
+        if (type === "provider") {
+
         // You can handle the response data here if needed
         router.push("/provider/dashboard")
       } else {
@@ -60,6 +62,8 @@ export default function LoginPage() {
       setIsLoading(false)
     }
   }
+
+
 
   return (
     <div className="container flex items-center justify-center min-h-screen py-12">
