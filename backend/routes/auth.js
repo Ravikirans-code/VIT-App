@@ -10,7 +10,7 @@ router.post('/register', authController.register);
 // POST /login route
 router.post('/login', authController.login);
 
-router.get('/dashboard', protectRoute('user'), (req, res) => {
+router.get('/dashboard', protectRoute('patient'), (req, res) => {
 	res.json({
 	  message: 'Welcome to the provider dashboard',
 	  user: req.user.email, // The user object is attached to the request

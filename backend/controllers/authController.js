@@ -1,4 +1,5 @@
 // controllers/authController.js
+const sendResponse = require('../utils/response');
 const authService = require('../services/authService');
 
 // Register route
@@ -17,11 +18,7 @@ const register = async (req, res) => {
       medicalHistory,
       createdBy,
     });
-
-    res.status(201).json({
-      message: 'User registered successfully',
-      user: newUser,
-    });
+    sendResponse(res, 201, 'User registered successfully', { user: newUser });
   } catch (err) {
     res.status(400).json({ message: err.message });
   }

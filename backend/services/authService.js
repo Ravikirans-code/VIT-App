@@ -1,7 +1,8 @@
 // services/authService.js
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');  // Import User model
-const bcrypt = require('bcryptjs');
+const Register = require('../models/register');
+const bcrypt = require('bcrypt');
 
 // User Registration
 const register = async ({
@@ -39,9 +40,23 @@ const register = async ({
         updatedAt: new Date(),
     });
 
-    await newUser.save();
+    const newRegister = new Register({
+        name,
+        email,
+        password: hashedPassword,
+        dateOfBirth,
+        gender,
+        address,
+        role,
+        medicalHistory,
+        createdBy,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+    });
 
-    return newUser;
+    
+    await newRegister.save();
+    return await newUser.save();
 };
 
 // User Login
