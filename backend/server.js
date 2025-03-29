@@ -11,7 +11,7 @@ const swaggerDocument = require('./swagger.json');
 const authRoutes = require('./routes/auth'); // Import the auth routes
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4300;
 
 // Middleware
 app.use(helmet());
