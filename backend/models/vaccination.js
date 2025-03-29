@@ -1,7 +1,5 @@
 // Vaccination Schema
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
-
 
 const vaccinationSchema = new mongoose.Schema({
     vaccineName: { type: String, required: true },

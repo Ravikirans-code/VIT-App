@@ -1,4 +1,4 @@
-const PatientVaccination = require('../models/PatientVaccination');
+const PatientVaccination = require('../models/patientVaccination');
 
 // Add new patient vaccination record
 const addPatientVaccination = async (vaccinationData) => {

@@ -1,13 +1,14 @@
 const patientVaccinationService = require('../services/patientVaccinationService');
+const sendResponse = require('../utils/response');
 
 // Add a new patient vaccination record
 const addPatientVaccination = async (req, res) => {
     try {
         const vaccinationData = req.body;
         const patientVaccination = await patientVaccinationService.addPatientVaccination(vaccinationData);
-        res.status(201).json({ message: 'Patient vaccination record added successfully', patientVaccination });
+        sendResponse(res, 201, 'Patient vaccination record added successfully', patientVaccination);
     } catch (error) {
-        res.status(500).json({ message: 'Error adding patient vaccination', error: error.message });
+        sendResponse(res, 500, 'Error adding patient vaccination', error);
     }
 };
 
@@ -21,10 +22,9 @@ const updatePatientVaccination = async (req, res) => {
         if (!updatedVaccination) {
             return res.status(404).json({ message: 'Patient vaccination record not found' });
         }
-
-        res.status(200).json({ message: 'Patient vaccination record updated successfully', updatedVaccination });
+        sendResponse(res, 200, 'Patient vaccination record updated successfully', updatedVaccination);
     } catch (error) {
-        res.status(500).json({ message: 'Error updating patient vaccination', error: error.message });
+        sendResponse(res, 500, 'Error updating patient vaccination', error);
     }
 };
 
@@ -32,25 +32,24 @@ const updatePatientVaccination = async (req, res) => {
 const getAllPatientVaccinations = async (req, res) => {
     try {
         const patientVaccinations = await patientVaccinationService.getAllPatientVaccinations();
-        res.status(200).json(patientVaccinations);
+        sendResponse(res, 200, '', patientVaccinations);
     } catch (error) {
-        res.status(500).json({ message: 'Error fetching patient vaccination records', error: error.message });
+        sendResponse(res, 500, 'Error fetching patient vaccination records', error);
     }
 };
 
 // Get patient vaccination record by ID
 const getPatientVaccinationById = async (req, res) => {
-    const { id, patientId, vaccinationId, status } = req.params;
     try {
-        const patientVaccination = await patientVaccinationService.getPatientVaccinationById(req);
+        const { id } = req.params;
+        const patientVaccination = await patientVaccinationService.getPatientVaccinationById(id);
 
         if (!patientVaccination) {
             return res.status(404).json({ message: 'Patient vaccination record not found' });
         }
-
-        res.status(200).json(patientVaccination);
+        sendResponse(res, 200, '', patientVaccination);
     } catch (error) {
-        res.status(500).json({ message: 'Error fetching patient vaccination record', error: error.message });
+        sendResponse(res, 500, 'Error fetching patient vaccination record', error);
     }
 };
 
