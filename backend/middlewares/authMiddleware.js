@@ -16,7 +16,7 @@ const protectRoute = (requiredRole) => {
       const decoded = jwt.verify(token, 'your-secret-key');  // Replace 'your-secret-key' with your actual secret key
 console.log("decoded: ", decoded)
       // Check if the user has the required role
-      if (decoded.role !== requiredRole) {
+      if (!requiredRole.includes(decoded.role)) {
         return res.status(403).json({ message: 'Access denied, insufficient role' });
       }
 
