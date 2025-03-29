@@ -1,10 +1,10 @@
 # VIT-App
 #Squad 8 
 
-#Registration, login pages integrations for both patients and providers - Soundaray 
+#Registration, login pages integrations for both patients and providers - Soundaraya
 
-#Backend auth apis, vaccination -- Sanjoy
+#Backend auth api, vaccination -- Sanjoy
 
-#Frontend boiler plate, compoennets and validation and api, db schemas work -- Ravi kiran
+#All the Frontend pages, components, validation and api, db schemas including patients and provider form for submission, schedular, and approve/reject submissions pages -- Ravi kiran
 
 
