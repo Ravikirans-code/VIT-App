@@ -1,13 +1,14 @@
 const vaccinationService = require('../services/vaccinationService');
+const sendResponse = require('../utils/response');
 
 // Add a new vaccination
 const addVaccination = async (req, res) => {
     try {
         const vaccinationData = req.body;
         const vaccination = await vaccinationService.addVaccination(vaccinationData);
-        res.status(201).json({ message: 'Vaccination added successfully', vaccination });
+        sendResponse(res, 201, 'Vaccination added successfully', vaccination);
     } catch (error) {
-        res.status(500).json({ message: 'Error adding vaccination', error: error.message });
+        sendResponse(res, 500, 'Error adding vaccination', error);
     }
 };
 
@@ -21,10 +22,9 @@ const updateVaccination = async (req, res) => {
         if (!updatedVaccination) {
             return res.status(404).json({ message: 'Vaccination not found' });
         }
-
-        res.status(200).json({ message: 'Vaccination updated successfully', updatedVaccination });
+        sendResponse(res, 200, 'Vaccination updated successfully', updatedVaccination);
     } catch (error) {
-        res.status(500).json({ message: 'Error updating vaccination', error: error.message });
+        sendResponse(res, 500, "Error updating vaccination", error);
     }
 };
 
@@ -32,9 +32,9 @@ const updateVaccination = async (req, res) => {
 const getAllVaccinations = async (req, res) => {
     try {
         const vaccinations = await vaccinationService.getAllVaccinations();
-        res.status(200).json(vaccinations);
+        sendResponse(res, 200, "", vaccinations);
     } catch (error) {
-        res.status(500).json({ message: 'Error fetching vaccinations', error: error.message });
+        sendResponse(res, 500, "Error fetching vaccinations", error);
     }
 };
 
@@ -45,12 +45,11 @@ const getVaccinationById = async (req, res) => {
         const vaccination = await vaccinationService.getVaccinationById(id);
 
         if (!vaccination) {
-            return res.status(404).json({ message: 'Vaccination not found' });
+            return sendResponse(res, 404, "Vaccination not found", {});
         }
-
-        res.status(200).json(vaccination);
+        sendResponse(res, 200, '', vaccination);
     } catch (error) {
-        res.status(500).json({ message: 'Error fetching vaccination', error: error.message });
+        return sendResponse(res, 500, "Error fetching vaccination", error);
     }
 };
 
